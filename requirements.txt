@@ -1,0 +1,151 @@
+# requirements.txt - Comentado Linha a Linha (Atualizado com Pinecone)
+
+firecrawl-py==2.8.0
+# SDK oficial Python para API Firecrawl
+# Versão 2.8.0: versão específica para garantir compatibilidade
+# Firecrawl: serviço de web scraping estruturado
+# Funcionalidades: scraping, busca, extração de dados estruturados
+# Usado por ambos os agentes (MCP e Workflow)
+
+langchain==0.3.7
+# Framework principal para desenvolvimento com LLMs
+# Versão 0.3.7: versão estável específica
+# LangChain: abstração de alto nível para LLMs
+# Funcionalidades: chains, prompts, memory, tools
+# Base para integração com OpenAI e outras funcionalidades
+
+langchain-openai==0.2.8
+# Integração específica LangChain com OpenAI
+# Versão 0.2.8: compatível com langchain==0.3.7
+# Funcionalidades: ChatOpenAI, OpenAI embeddings, etc.
+# Separado do core para modularidade
+# Permite uso de outros providers de LLM se necessário
+
+langgraph==0.2.34
+# Framework para workflows complexos com agentes
+# Versão 0.2.34: versão estável para produção
+# LangGraph: extensão do LangChain para state machines
+# Usado pelo WorkflowAgent para fluxo extract → research → analyze
+# Funcionalidades: StateGraph, nodes, edges, conditional routing
+
+pydantic==2.9.2
+# Framework para validação e serialização de dados
+# Versão 2.9.2: Pydantic v2 (performance melhorada)
+# Usado para: modelos de dados tipados, validação automática
+# CompanyInfo, CompanyAnalysis, ResearchState são Pydantic models
+# Integration nativa com FastAPI para request/response validation
+
+langchain-mcp-adapters==0.1.7
+# Adaptador para integração LangChain com Model Context Protocol
+# Versão 0.1.2: versão inicial específica
+# MCP (Model Context Protocol): protocolo para ferramentas externas
+# Converte ferramentas MCP em format LangChain Tools
+# Usado pelo MCPAgent para integração dinâmica com Firecrawl
+
+python-dotenv==1.0.1
+# Biblioteca para carregar variáveis de ambiente de arquivo .env
+# Versão 1.0.1: versão estável e madura
+# Funcionalidade: load_dotenv() carrega .env automaticamente
+# Separação de configuração sensível (API keys) do código
+# Best practice para desenvolvimento local vs produção
+
+fastapi==0.115.4
+# Framework web moderno para APIs Python
+# Versão 0.115.4: versão recente com correções
+# FastAPI: baseado em Starlette + Pydantic
+# Funcionalidades: automatic docs, type validation, async support
+# Usado para servir API REST e interface web
+# Performance superior ao Flask para aplicações assíncronas
+
+uvicorn[standard]==0.32.0
+# Servidor ASGI para aplicações Python assíncronas
+# Versão 0.32.0: versão estável específica
+# [standard]: inclui dependências extras (watchfiles, etc.)
+# ASGI: interface assíncrona entre web servers e Python apps
+# Replacement para WSGI em aplicações async
+# Usado em produção no Render e desenvolvimento local
+
+jinja2==3.1.4
+# Engine de templates para renderização HTML
+# Versão 3.1.4: versão estável atual
+# Jinja2: syntax similar ao Django templates
+# Usado pelo FastAPI para servir páginas HTML (index.html)
+# Funcionalidades: template inheritance, filters, macros
+# Integração nativa com FastAPI templates
+
+pinecone-client==5.0.1
+# SDK oficial Python para Pinecone vector database
+# Versão 5.0.1: versão mais recente e estável
+# Pinecone: serviço de vector database serverless
+# Funcionalidades: indexação, busca semântica, escalabilidade automática
+# Usado pelo RAGAgent para armazenar e buscar embeddings
+# Suporta: create_index, upsert, query, delete
+
+langchain-pinecone==0.2.0
+# Integração específica LangChain com Pinecone
+# Versão 0.2.0: compatível com langchain==0.3.7 e pinecone-client==5.0.1
+# Funcionalidades: PineconeVectorStore, índice automático
+# Abstração de alto nível para operações de vector store
+# Usado pelo RAGAgent para integração seamless
+
+langchain-community==0.3.1
+# Coleção de integrações LangChain com serviços externos
+# Versão 0.3.1: compatível com langchain==0.3.7
+# Inclui: vector stores, text splitters, document loaders
+# Usado pelo RAGAgent para RecursiveCharacterTextSplitter
+# Ampla coleção de ferramentas para RAG workflows
+
+langchain-text-splitters==0.3.0
+# Componentes específicos para divisão de texto
+# Versão 0.3.0: separado do core para modularidade
+# Funcionalidades: RecursiveCharacterTextSplitter, chunk strategies
+# Usado pelo RAGAgent para preparar documentos para indexação
+# Otimizações: preserva contexto semântico, overlap configurável
+
+aiohttp==3.9.5
+# Cliente HTTP assíncrono para Python
+# Versão 3.9.5: versão estável com correções de segurança
+# Funcionalidades: requisições async, sessões, timeouts
+# Usado pelo ExternoAgent para comunicação com Flowise API
+# Melhor performance que requests em aplicações async
+
+# llama-index==0.12.3
+# Framework principal do LlamaIndex para aplicações LLM
+# Versão 0.12.3: versão estável mais recente
+# LlamaIndex: framework focado em RAG e data-aware applications
+# Funcionalidades: indexing, querying, multi-modal support
+# Usado pelo ClassificaImagemAgent como framework base
+
+# llama-index-llms-openai==0.3.1
+# Integração LlamaIndex com modelos OpenAI
+# Versão 0.3.1: compatível com llama-index==0.12.3
+# Funcionalidades: OpenAI LLM integration, configuração simplificada
+# Usado pelo ClassificaImagemAgent para processamento de texto
+
+# llama-index-multi-modal-llms-openai==0.3.0
+# Integração LlamaIndex com modelos multimodais OpenAI
+# Versão 0.3.0: versão estável para GPT-4 Vision
+# Funcionalidades: GPT-4 Vision, análise de imagens, multi-modal prompts
+# CORE do ClassificaImagemAgent para análise visual
+# Suporta: image understanding, visual question answering
+
+# pillow==10.4.0
+# Python Imaging Library (PIL) modernizada
+# Versão 10.4.0: versão estável com suporte a múltiplos formatos
+# Funcionalidades: manipulação de imagens, conversão de formatos
+# Usado pelo ClassificaImagemAgent para processamento de imagens
+# Suporte a: JPEG, PNG, GIF, WebP, etc.
+
+# opencv-python-headless==4.10.0.84
+# OpenCV para Python sem dependências GUI
+# Versão 4.10.0.84: versão headless ideal para servidores
+# Funcionalidades: computer vision, processamento de imagem
+# Usado pelo ClassificaImagemAgent para análise avançada de imagens
+# headless: sem interface gráfica, ideal para produção
+
+# numpy==1.26.4
+# Biblioteca fundamental para computação científica
+# Versão 1.26.4: versão estável compatível com OpenCV e Pillow
+# Funcionalidades: arrays multidimensionais, operações matemáticas
+# Dependência do OpenCV e processamento de imagens
+# Base para operações numéricas no ClassificaImagemAgent
